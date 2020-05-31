@@ -37,7 +37,16 @@
               ?>
 
             <?php foreach($subMenu as $sm) : ?>
+            <!-- Cek menu yang sedang aktif berdasarkan judul menu -->
+            <?php
+            if ($judul == $sm['judul'])
+            :?>
+              <li class="nav-item active">
+            <?php else: ?>
               <li class="nav-item">
+            <?php endif; ?>
+            <!-- END cek menu -->
+
                 <!-- url -->
                 <a href="<?= base_url($sm['url']); ?>" class="nav-link">
                 <!-- icon -->
