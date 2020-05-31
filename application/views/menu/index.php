@@ -32,8 +32,8 @@
                             <th scope="row"><?= $no++ ?></th>
                             <td><?= $m['menu']; ?></td>   
                             <td>
-                                <a href="" class="badge badge-success">Ubah</a>
-                                <a href="" class="badge badge-danger">Hapus</a>
+                                <a href="#" data-toggle="modal" data-target="#editMenu<?= $m['id']; ?>" class="badge badge-success">Ubah</a>
+                                <a href="#" class="badge badge-danger" data-toggle="modal" data-target="#hapusMenu<?= $m['id']; ?>">Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -69,3 +69,58 @@
     </div>
   </div>
 </div>
+
+<?php foreach($menu as $m) : ?>
+<!-- Modal Edit Menu -->
+<div class="modal fade" id="editMenu<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="addMenuLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addMenuLabel">Edit Nama Menu</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form action="<?= base_url('menu/updateMenu') ?>" method="post">
+            <div class="modal-body">
+                <div class="form-group">
+                    <input name="idmenu" type="hidden"  class="form-control" id="formGroupExampleInput" value="<?= $m['id']; ?>">
+                    <input name="menu" type="text" class="form-control" id="formGroupExampleInput" value="<?= $m['menu']; ?>" ="Nama Menu">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Hapus Menu -->
+<div class="modal fade" id="hapusMenu<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="addMenuLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addMenuLabel">Hapus Menu</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form action="<?= base_url('menu/deleteMenu/'.$m['id'])?>" method="post">
+            <div class="modal-body">
+                <div class="form-group">
+                    <p class="lead mt-4">Yakin ingin hapus menu <?= $m['menu'] ?> ?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Hapus</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<?php endforeach; ?>
+

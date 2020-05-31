@@ -11,6 +11,30 @@ class modelMenu extends CI_Model
         ";
         return $this->db->query($query)->result_array();
     }   
+
+    function ubahMenu($where,$data,$table)
+    {
+        $this->db->where($where);
+        $this->db->update($table,$data);
+    }
+
+    function hapusMenu($where,$table)
+    {
+        $this->db->where($where);
+        $this->db->delete($table);
+    }
+
+    function ubahSubmenu($where,$data,$table)
+    {
+        $this->db->where($where);
+        $this->db->update($table,$data);
+    }
+
+    function hapusSubmenu($where,$table)
+    {
+        $this->db->where($where);
+        $this->db->delete($table);
+    }
 }
 
 
