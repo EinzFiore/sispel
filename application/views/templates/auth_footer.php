@@ -14,5 +14,27 @@
   <script src="<?= base_url('assets/')?>js/sweetalert2.min.js"></script>
 
   <!-- Page Specific JS File -->
+<script>
+  $('.form-check-input').on('click', function(){
+    const menuID = $(this).data('menu');
+    const roleID = $(this).data('role');
+
+    $.ajax({
+      url: "<?= base_url('admin/ubah_akses'); ?>",
+      type: 'post',
+      data: {
+        menuID: menuID,
+        roleID: roleID
+      },
+      success: function() {
+        document.location.href = "<?= base_url('admin/akses_role/'); ?>" + roleID;
+      }
+    });
+  });
+
+</script>
+
+
+
 </body>
 </html>

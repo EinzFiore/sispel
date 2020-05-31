@@ -126,6 +126,15 @@ class AuthUser extends CI_Controller
       </div>');
         redirect(base_url());
     }
+
+
+    function blocked()
+    {
+        $data['judul'] = '404 | Maaf Halaman Yang Anda Tuju Tidak Ada';
+        $this->load->view('templates/auth_header',$data);
+        $this->load->view('userauth/blocked');
+        $this->load->view('templates/auth_footer');
+    }
 }
 
 
