@@ -7,6 +7,7 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('modelAdmin');
         user_access();
     }
     
@@ -24,6 +25,8 @@ class Admin extends CI_Controller
         $this->load->view('templates/auth_footer');
     }
     
+    // User Akses
+
     function role()
     {
         $data['judul'] = "Role";
@@ -31,12 +34,23 @@ class Admin extends CI_Controller
         
         $data['role'] = $this->db->get('role')->result_array();
 
-        $this->load->view('templates/auth_header',$data);
-        $this->load->view('templates/user_templates/topbar',$data);
-        $this->load->view('templates/user_templates/sidebar',$data);
-        $this->load->view('admin/role',$data);
-        $this->load->view('templates/user_templates/footer');
-        $this->load->view('templates/auth_footer');
+
+        $this->form_validation->set_rules('addRole', 'Role', 'required',['required' => 'Field Role Wajib Diisi !!']);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/auth_header',$data);
+            $this->load->view('templates/user_templates/topbar',$data);
+            $this->load->view('templates/user_templates/sidebar',$data);
+            $this->load->view('admin/role',$data);
+            $this->load->view('templates/user_templates/footer');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $this->db->insert('role',['name_role' => $this->input->post('addRole')]);
+            $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+            Role baru telah ditambahkan!
+          </div>');
+          redirect(base_url('admin/role'));
+        }
     }
 
     function akses_role($role_id)
@@ -55,6 +69,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/role_akses',$data);
         $this->load->view('templates/user_templates/footer');
         $this->load->view('templates/auth_footer');
+        
     }
 
     function ubah_akses()
@@ -76,6 +91,39 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
         Akses berhasil diubah !!
       </div>');
+    }
+
+    function editRole()
+    {
+        $this->form_validation->set_rules('editRole', 'Role', 'required',['required' => 'Field Role Wajib Diisi !!']);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/auth_header',$data);
+            $this->load->view('templates/user_templates/topbar',$data);
+            $this->load->view('templates/user_templates/sidebar',$data);
+            $this->load->view('admin/role',$data);
+            $this->load->view('templates/user_templates/footer');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $data = array('name_role' => $this->input->post('editRole'));
+            $where = array('id_role' => $this->input->post('id_role'));
+
+            $this->modelAdmin->editRole($where,$data,'role');
+            $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+            Role berhasil diubah !!
+          </div>');
+          redirect(base_url('admin/role'));
+        }
+    }
+
+    function hapusRole($id)
+    {
+        $where = array('id_role'=>$id);
+        $this->modelAdmin->hapusRole($where,'role');
+        $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+        Role berhasil dihapus !!
+      </div>');
+      redirect(base_url('admin/role'));
     }
 }
 
