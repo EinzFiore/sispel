@@ -135,7 +135,53 @@ class AuthUser extends CI_Controller
       </div>');
         redirect(base_url());
     }
+    
 
+    function ubah_password()
+    {
+        $data['judul'] = 'Pengaturan';
+        $data['user'] = $this->db->get_where('user',['email' => $this->session->userdata('email')])->row_array();
+
+        $this->form_validation->set_rules('oldpassword', 'Password Lama', 'trim|required');
+        $this->form_validation->set_rules('newpassword', 'Password Baru', 'trim|required|min_length[4]|matches[newpassword_confirm]');
+        $this->form_validation->set_rules('newpassword_confirm', 'Konfirmasi Password', 'trim|required|min_length[4]|matches[newpassword]');
+        
+        
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/auth_header',$data);
+            $this->load->view('templates/user_templates/topbar',$data);
+            $this->load->view('templates/user_templates/sidebar',$data);
+            $this->load->view('user/ubah_password',$data);
+            $this->load->view('templates/user_templates/footer');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $current_password = $this->input->post('oldpassword'); 
+            $new_password = $this->input->post('newpassword');
+            if(!password_verify($current_password,$data['user']['password'])){
+                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                Password lama yang anda masukan salah !!
+                </div>');
+                redirect(base_url('user/ubah_password'));
+            } else {
+                if($current_password == $new_password){
+                    $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                    Password baru tidak boleh sama dengan password lama !!
+                    </div>');
+                    redirect(base_url('user/ubah_password'));
+                } else {
+                    // Password OK
+                    $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+                    $this->db->set('password',$password_hash);
+                    $this->db->where('email',$this->session->userdata('email'));
+                    $this->db->update('user');
+                    $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+                    Password berhasil diubah !!
+                    </div>');
+                    redirect(base_url('user/ubah_password'));
+                }
+            }          
+        }
+    }
 
     function blocked()
     {
