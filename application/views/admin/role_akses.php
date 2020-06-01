@@ -7,11 +7,15 @@
           </div>
 
         <div class="row">
+            
             <div class="col-6">
+            <a href="<?= base_url('admin/role') ?>" class="btn btn-primary mb-2"><< Kembali</a>
             <?= $this->session->flashdata('message'); ?>
                 <div class="card">
                   <div class="card-header">
-                    <h4>Role Akses</h4>
+                    <?php foreach($role as $r) : ?>
+                    <?php endforeach; ?>
+                    <h4>Role Akses : <mark><?= $role['name_role']; ?></mark> </h4>
                     <div class="card-header-form">
                     </div>
                   </div>
