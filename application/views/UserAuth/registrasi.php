@@ -13,28 +13,18 @@
               <div class="card-body">
                 <form method="POST" action="<?= base_url('AuthUser/registration')?>">
                   <div class="row">
-                    <div class="form-group col-8">
-                      <label for="full_name">Nama Lengkap</label>
-                      <input type="text" class="form-control" name="full_name" value="<?= set_value('full_name') ?>" autofocus>
-                        <small class="text-danger">
-                          <?= form_error('full_name'); ?>
-                        </small>
-                    </div>
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-6">
-                        <label for="no_hp">Nomor Handphone</label>
-                        <input type="text" class="form-control" name="no_hp" autofocus>
-                        <small class="text-danger">
-                          <?= form_error('no_hp'); ?>
-                        </small>
-                    </div>
                     <div class="form-group col-6">
                         <label for="email">Email</label>
                         <input id="ktp" type="text" class="form-control" name="email" value="<?= set_value('email') ?>"">
                         <small class="text-danger">
                           <?= form_error('email'); ?>
+                        </small>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="no_hp">Nomor Handphone</label>
+                        <input type="text" class="form-control" name="no_hp" autofocus>
+                        <small class="text-danger">
+                          <?= form_error('no_hp'); ?>
                         </small>
                     </div>
                   </div>  

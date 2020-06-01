@@ -22,6 +22,12 @@
     </script>
 
 <script>
+  $('.custom-file-input').on('change', function() {
+    let filename = $(this).val().split('\\').pop();
+    $(this).next('.custom-file-label').addClass("selected").html(filename);
+  });
+
+
   $('.custom-switch-input').on('click', function(){
     const menuID = $(this).data('menu');
     const roleID = $(this).data('role');

@@ -93,7 +93,6 @@ class AuthUser extends CI_Controller
         
 
         // Form validasi registrasi
-        $this->form_validation->set_rules('full_name', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]',[
             'is_unique' => 'Email ini telah terdaftar !!'
             ]);
@@ -109,7 +108,6 @@ class AuthUser extends CI_Controller
             $this->load->view('templates/auth_footer');
         } else {
             $data = [
-                'nama' => htmlspecialchars($this->input->post('full_name',true)),
                 'no_hp' => htmlspecialchars($this->input->post('no_hp',true)),
                 'email' => htmlspecialchars($this->input->post('email',true)),
                 'foto' => 'default.jpg',
