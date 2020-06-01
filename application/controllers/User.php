@@ -66,6 +66,9 @@ class User extends CI_Controller
             ];
             $where = array('id_user' => $id);
             $this->modelUser->updateDataPeserta($where,$data,'user');
+            $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+            Data berhasil ditambahkan !!
+        </div>');
             redirect(base_url('user'));
         }
     }
@@ -124,13 +127,13 @@ class User extends CI_Controller
             ];
 
         }
-
             $where = array('id_user' => $id);
             $this->modelUser->updateDataPeserta($where,$data,'user');
-            redirect(base_url('user'));
+            $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+                Data berhasil diubah !!
+            </div>');
+            redirect(base_url('user/edit'));
         }
-        
-
     }
 }
 

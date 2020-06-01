@@ -5,12 +5,14 @@
           <div class="section-header">
             <h1><?= $judul; ?></h1>
           </div>
-
           <div class="section-body">
             <h2 class="section-title">Data Pribadi</h2>
             <div class="card">
               <div class="card-body">
                     <div class="row mt-4">
+                      <div class="col-sm-6">
+                        <?= $this->session->flashdata('message'); ?>
+                      </div>
                       <div class="col-12 ">
                         <div class="wizard-steps">
                           <div class="wizard-step wizard-step-active">
