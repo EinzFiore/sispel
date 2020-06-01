@@ -26,7 +26,6 @@
                         </div>
                       </div>
                     </div>
-
                         <form class="form" method="post" action="<?= base_url('user/ubah_password'); ?>">
                             <div class="form-group row ml-3">
                                 <div class="col-sm-4">
@@ -62,7 +61,7 @@
                 
                   <div class="form-group row">
                     <div class="col-sm ">
-                    <a href="#" class="btn btn-md btn-warning mr-2 ml-4">Kembali</a>
+                    <a href="<?= base_url('user') ?>" class="btn btn-md btn-warning mr-2 ml-4">Kembali</a>
                     <button type="submit" class="btn btn-md btn-primary mr-3">Ubah Password</button>
                     </div>
                 </div>

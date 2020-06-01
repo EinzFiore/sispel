@@ -107,23 +107,123 @@ class AuthUser extends CI_Controller
             $this->load->view('UserAuth/registrasi');
             $this->load->view('templates/auth_footer');
         } else {
+            $email = $this->input->post('email',true);
             $data = [
                 'no_hp' => htmlspecialchars($this->input->post('no_hp',true)),
-                'email' => htmlspecialchars($this->input->post('email',true)),
+                'email' => htmlspecialchars($email),
                 'foto' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'),PASSWORD_DEFAULT),
                 'id_role' => 6,
-                'is_active' => 1,
+                'is_active' => 0,
+                'date_created' => time()
+            ];
+
+            // siapkan token
+            $token = base64_encode(random_bytes(32));
+            $user_token = [
+                'email' => $email,
+                'token' => $token,
                 'date_created' => time()
             ];
 
             $this->modelAuth->regMembers($data);
+            $this->db->insert('user_token',$user_token);
+
+            // Kirim email
+            $this->_kirimEmail($token,'verify');
+
             $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
             Akun Berhasil Dibuat!, Silahkan Cek Email Anda Untuk Aktivasi!
           </div>');
             redirect(base_url());
         }
     }
+
+    private function _kirimEmail($token,$type)
+    {
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'kamisama.sispel@gmail.com',
+            'smtp_pass' => 'ABC5dasar',
+            'smtp_port' => 465,
+            'mailtype' => 'html',
+            'charset' => 'uff-8',
+            'newline' => "\r\n"
+        ];
+
+        $this->email->initialize($config);
+
+        $data = array(
+            'name' => 'Kamisama',
+            'link' => ' ' . base_url() . 'AuthUser/verify?email=' . $this->input->post('email') . '&token=' . $token . '"',
+        );
+
+        $this->email->from('kamisama.sispel@gmail.com','Admin SISPEL');
+        $this->email->to($this->input->post('email'));
+
+        if($type == 'verify') {
+            $link = $this->email->subject('Verifikasi Akun SISPEL');
+            $body = $this->load->view('templates/email_template',$data,true);
+            $this->email->message($body);
+        } else {
+
+        } if($this->email->send()) {
+            return true;
+        } else{
+            echo $this->email->print_debugger();
+            die;
+        }
+        
+    }
+
+    public function verify()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user',['email' => $email])->row_array();
+        if($user){
+            $user_token = $this->db->get_where('user_token',['token' => $token])->row_array();
+            if($user_token){
+                if(time() - $user_token['date_created'] < (60*60*24)) {
+                    // Jika benar update is_active di tabel user
+                    $this->db->set('is_active', 1);
+                    $this->db->where('email',$email);
+                    $this->db->update('user');
+
+                    // hapus user token
+                    $this->db->delete('user_token',['email' => $email]);
+                    $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">' . $email .'
+                    Telah berhasil di aktivasi, Silahkan Login. 
+                  </div>');
+                    redirect(base_url());
+
+                } else {
+                    // fungsi memberi batas waktu aktivasi token
+
+                    $this->db->delete('user',['email' => $email]);
+                    $this->db->delete('user_token',['email' => $email]);
+
+                    $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                    Aktivasi Akun gagal ! Token Expired.
+                  </div>');
+                    redirect(base_url(authuser));
+                }
+            } else {
+                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                Aktivasi Akun gagal ! Token salah !
+              </div>');
+                redirect(base_url(authuser));
+            }
+        } else {
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+            Aktivasi Akun gagal ! Email salah !
+          </div>');
+            redirect(base_url(authuser));
+        }
+    }
+
 
     function logout()
     {

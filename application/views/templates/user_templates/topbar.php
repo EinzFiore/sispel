@@ -12,10 +12,10 @@
             <img alt="image" src="<?= base_url('assets/img/profile/') . $user['foto'] ?>" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi, <?= $user['nama']; ?></div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="features-profile.html" class="dropdown-item has-icon">
+              <a href="<?= base_url('user') ?>" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
-              <a href="features-settings.html" class="dropdown-item has-icon">
+              <a href="<?= base_url('authuser/ubah_password'); ?>" class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>
