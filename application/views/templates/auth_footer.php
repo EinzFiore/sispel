@@ -15,7 +15,7 @@
 
   <!-- Page Specific JS File -->
 <script>
-  $('.form-check-input').on('click', function(){
+  $('.custom-switch-input').on('click', function(){
     const menuID = $(this).data('menu');
     const roleID = $(this).data('role');
 
