@@ -12,6 +12,12 @@ class AuthUser extends CI_Controller
 
     function index()
     {
+
+        // Cek session agar tidak bisa kembali ke halaman auth jika terdapat session.
+        if($this->session->userdata('email')){
+            redirect('user');
+        }
+
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
         
@@ -42,8 +48,10 @@ class AuthUser extends CI_Controller
                     $this->session->set_userdata($data);
                     if($user['id_role'] == 1){
                         redirect('admin');
-                    } else {
+                    } elseif($user['id_role'] == 2) {
                     redirect('user');
+                } elseif($user['id_role'] == 6){
+                    redirect('user/data_peserta');
                 }
                 } else {
                     $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
@@ -76,6 +84,11 @@ class AuthUser extends CI_Controller
     
     function registration()
     {
+        // Cek session agar tidak bisa kembali ke halaman auth jika terdapat session.
+        if($this->session->userdata('email')){
+            redirect('user');
+        }
+
         $this->load->model('modelAuth');
         
 
@@ -84,7 +97,6 @@ class AuthUser extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]',[
             'is_unique' => 'Email ini telah terdaftar !!'
             ]);
-        $this->form_validation->set_rules('no_ktp', 'Nomor KTP','required|max_length[16]|min_length[16]');
         $this->form_validation->set_rules('no_hp', 'No HP', 'required|max_length[12]');
         $this->form_validation->set_rules('password1', 'Password', 'required|min_length[3]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Password', 'required|matches[password1]');
@@ -98,12 +110,11 @@ class AuthUser extends CI_Controller
         } else {
             $data = [
                 'nama' => htmlspecialchars($this->input->post('full_name',true)),
-                'no_ktp' => htmlspecialchars($this->input->post('no_ktp',true)),
                 'no_hp' => htmlspecialchars($this->input->post('no_hp',true)),
                 'email' => htmlspecialchars($this->input->post('email',true)),
                 'foto' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'),PASSWORD_DEFAULT),
-                'id_role' => 2,
+                'id_role' => 6,
                 'is_active' => 1,
                 'date_created' => time()
             ];

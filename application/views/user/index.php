@@ -44,16 +44,16 @@
                             <div class="card-body">
                                 <dl class="row">
                                     <dt class="col-sm-3">No. KTP</dt>
-                                    <dd class="col-sm-9">1212xxxxxxxxxxxx.</dd>
+                                    <dd class="col-sm-9"><?= $user['no_ktp'] ?></dd>
 
                                     <dt class="col-sm-3">Jenis Kelamin</dt>
                                     <dd class="col-sm-9">
-                                        <p>Laki-laki.</p>
+                                        <p><?= $user['jk'] ?></p>
                                     </dd>
 
-                                    <dt class="col-sm-3">Tempat/Tanggal Lahir</dt>
+                                    <dt class="col-sm-3">Tanggal Lahir</dt>
                                     <dd class="col-sm-9">
-                                        <p>Jakarta, 06 Februari, 2000.</p>
+                                        <p><?= $user['tgl_lahir']; ?> </p>
                                     </dd>
                                         <p class="col-sm-12"><strong>Akun ini dibuat sejak :</strong> <?= date('d F Y', $user['date_created']);?></p>
                                     </dd>
@@ -101,7 +101,7 @@
                             </div>
                             <div class="card-body">
                                 <dl class="row">
-                                    <dt class="col-sm-3">Cikampek, Perum Regensi Jalan Onik 10 RT/04 RW/13 No.14</dt>
+                                    <dt class="col-sm-3"><?= $user['alamat']; ?></dt>
 
                                     <dt class="col-sm-3">Jawa Barat, Karawang</dt>
 

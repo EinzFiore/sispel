@@ -19,6 +19,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="<?= base_url('assets/')?>css/custom.css">
   <link rel="stylesheet" href="<?= base_url('assets/')?>css/sweetaler2.min.css">
+  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>

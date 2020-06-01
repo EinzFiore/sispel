@@ -7,6 +7,7 @@
   <script src="<?= base_url('assets/')?>js/stisla.js"></script>
 
   <!-- JS Libraies -->
+  <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 
   <!-- Template JS File -->
   <script src="<?= base_url('assets/')?>js/scripts.js"></script>
@@ -14,6 +15,12 @@
   <script src="<?= base_url('assets/')?>js/sweetalert2.min.js"></script>
 
   <!-- Page Specific JS File -->
+  <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
+
 <script>
   $('.custom-switch-input').on('click', function(){
     const menuID = $(this).data('menu');
