@@ -29,8 +29,8 @@
               </div>
 
               <div class="form-group text-right">
-                <a href="auth-forgot-password.html" class="float-left mt-3">
-                  Forgot Password?
+                <a href="<?= base_url('authuser/lupaPassword') ?>" class="float-left mt-3">
+                  Lupa Password?
                 </a>
                 <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
                   Login
