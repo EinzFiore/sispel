@@ -56,18 +56,45 @@ class User extends CI_Controller
 
         } else {
             $id = $this->input->post('id_user');
+
+            // Cek jika ada gambar yang akan diupload
+            $upload_foto = $_FILES['foto']['name'];
+
+            if($upload_foto){
+                $config['upload_path'] = './assets/img/profile/';
+                $config['allowed_types'] = 'jpg|png';
+                $config['max_size']  = '1024';
+                
+                $this->load->library('upload', $config);
+                
+                if ($this->upload->do_upload('foto')){
+                    $old_image = $data['user']['foto'];
+                    if($old_image != 'default.jpg') {
+                        unlink(FCPATH. 'assets/img/profile/' . $old_image);
+                    }
+
+                    $new_image = $this->upload->data('file_name');
+                }
+                else{
+                    $error = array('error' => $this->upload->display_errors());
+                }
+
+
             $data = [
                 'nama' => $this->input->post('nama'),
                 'no_ktp' => $this->input->post('nik'),
                 'alamat' => $this->input->post('alamat'),
                 'tgl_lahir' => htmlspecialchars($this->input->post('tl')),
                 'jk' => $this->input->post('jk'),
+                'foto' => $new_image,
                 'id_role' => 2
             ];
+        }
+        
             $where = array('id_user' => $id);
             $this->modelUser->updateDataPeserta($where,$data,'user');
             $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
-            Data berhasil ditambahkan !!
+            Data anda berhasil ditambahkan !!
         </div>');
             redirect(base_url('user'));
         }

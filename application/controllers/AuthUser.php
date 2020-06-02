@@ -156,7 +156,7 @@ class AuthUser extends CI_Controller
 
         $data = array(
             'name' => 'Kamisama',
-            'link' => ' ' . base_url() . 'AuthUser/verify?email=' . $this->input->post('email') . '&token=' . $token . '"',
+            'link' => ' ' . base_url() . 'AuthUser/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"',
         );
 
         $this->email->from('kamisama.sispel@gmail.com','Admin SISPEL');
@@ -282,6 +282,15 @@ class AuthUser extends CI_Controller
             }          
         }
     }
+
+    function lupaPassword()
+    {
+        $data['judul'] = "Lupa Password";
+        $this->load->view('templates/auth_header',$data);
+        $this->load->view('UserAuth/lupa_password');
+        $this->load->view('templates/auth_footer');
+    }
+
 
     function blocked()
     {

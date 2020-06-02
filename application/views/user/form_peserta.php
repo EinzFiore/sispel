@@ -88,7 +88,7 @@
                               <img src="<?= base_url('assets/img/profile/').$user['foto']; ?>" width="90%" alt="">
                             </div>
                             <div class="custom-file mt-2">
-                            <input type="file" class="custom-file-input pt-3" id="customFile">
+                            <input type="file" name="foto" class="custom-file-input pt-3" id="customFile">
                             <label class="custom-file-label" for="customFile">Choose file</label>
                             <p>Foto harus formal</p>
                         </div>
