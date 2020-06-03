@@ -16,7 +16,7 @@ class Admin extends CI_Controller
     {
         $data['judul'] = "Dashboard";
         $data['user'] = $this->db->get_where('user',['email' => $this->session->userdata('email')])->row_array();
-        
+
         $this->load->view('templates/auth_header',$data);
         $this->load->view('templates/user_templates/topbar',$data);
         $this->load->view('templates/user_templates/sidebar',$data);
@@ -125,6 +125,24 @@ class Admin extends CI_Controller
       </div>');
       redirect(base_url('admin/role'));
     }
+
+    function data_peserta()
+    {
+        
+        $data['judul'] = "Data Peserta";
+        $data['user'] = $this->db->get_where('user',['email' => $this->session->userdata('email')])->row_array();
+        $data['user_data'] = $this->db->get_where('user',array('id_role' => 2))->result_array();
+        
+
+        $this->load->view('templates/auth_header',$data);
+        $this->load->view('templates/user_templates/topbar',$data);
+        $this->load->view('templates/user_templates/sidebar',$data);
+        $this->load->view('admin/data_peserta',$data);
+        $this->load->view('templates/user_templates/footer');
+        $this->load->view('templates/auth_footer');
+    }
+
+
 }
 
 

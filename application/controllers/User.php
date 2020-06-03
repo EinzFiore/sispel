@@ -8,10 +8,13 @@ class User extends CI_Controller
         parent::__construct();
         $this->load->model('modelUser');
     }
-    
 
     function index()
     {
+        if(!$this->session->userdata('email')){
+            redirect(base_url());
+        }
+
         $data['judul'] = "Peserta";
         $data['user'] = $this->db->get_where('user',['email' => $this->session->userdata('email')])->row_array();
         
@@ -22,6 +25,7 @@ class User extends CI_Controller
         $this->load->view('templates/user_templates/footer');
         $this->load->view('templates/auth_footer');
     }
+
     
     function data_peserta()
     {

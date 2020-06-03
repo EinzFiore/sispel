@@ -104,19 +104,19 @@
             <img src="<?= base_url('assets/enno')?>/img/about.png" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates</h3>
+            <h3>Apa itu SISPEL ?</h3>
             <p class="font-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              SISPEL adalah sebuah platform web yang menyediakan berbagai macam pelatihan secara gratis, kamu dapat mendaftar pelatihan sekaligus
+              mencari lowongan pekerjaan yang disediakan oleh berbagai perusahaan yang berkerja sama dengan kami. Apa saja benefit nya?
             </p>
             <ul>
-              <li><i class="icofont-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-              <li><i class="icofont-check-circled"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="icofont-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda</li>
+              <li><i class="icofont-check-circled"></i> 100% Gratis</li>
+              <li><i class="icofont-check-circled"></i> Diajarkan oleh mentor professional</li>
+              <li><i class="icofont-check-circled"></i> Mendapatkan sertifikat kompetensi</li>
+              <li><i class="icofont-check-circled"></i> Berkerja sama dengan perusahaan ternama</li>
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur.
+              Tak cuma diatas saja, untuk info lebih lanjut yuk kepoin web SISPEL
             </p>
           </div>
         </div>
@@ -160,9 +160,9 @@
       <div class="container">
 
         <div class="section-title">
-          <span>Services</span>
-          <h2>Services</h2>
-          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+          <span>Pelatihan</span>
+          <h2>Pelatihan</h2>
+          <p>Berikut adalah Pelatihan yang tersedia</p>
         </div>
 
         <div class="row">

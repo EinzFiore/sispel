@@ -65,7 +65,7 @@
                   </div>
                   
                   <div class="mt-5 text-center">
-                	Sudah punya akun? Silahkan <a href="<?= base_url()?>">Login</a>
+                	Sudah punya akun? Silahkan <a href="<?= base_url('authuser/halamanLogin')?>">Login</a>
                   </div>
                 </form>
               </div>

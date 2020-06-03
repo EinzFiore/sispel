@@ -23,14 +23,14 @@
                   </div>
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Lupa Password
+                      Kirim Link
                     </button>
                 </form>
                     <hr>
                     <a href="<?= base_url('authuser/registration') ?>" class="btn btn-info btn-lg btn-block" tabindex="4">
                       Buat Akun
                     </a>
-                    <a href="<?= base_url('authuser') ?>" class="btn btn-warning btn-lg btn-block" tabindex="4">
+                    <a href="<?= base_url('authuser/halamanLogin') ?>" class="btn btn-warning btn-lg btn-block" tabindex="4">
                       Login
                     </a>
                   </div>

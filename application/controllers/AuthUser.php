@@ -12,8 +12,9 @@ class AuthUser extends CI_Controller
 
     function index()
     {
-
         // Cek session agar tidak bisa kembali ke halaman auth jika terdapat session.
+
+
         if($this->session->userdata('email')){
             redirect('user');
         }
@@ -31,6 +32,16 @@ class AuthUser extends CI_Controller
             $this->_login();
         }
     }
+
+    
+    public function Homepage()
+	{
+		$data['judul'] = 'Homepage';
+
+		$this->load->view('templates/home_templates/header',$data);
+		$this->load->view('homepage');
+		$this->load->view('templates/home_templates/footer');
+	}
 
     private function _login()
     {
@@ -161,6 +172,10 @@ class AuthUser extends CI_Controller
         $data_reset = array(
             'name' => 'Kamisama',
             'link' => ' ' . base_url() . 'AuthUser/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"',
+        );
+
+        $notif = array(
+            'name' => 'Kamisama',
         );
 
         $this->email->from('kamisama.sispel@gmail.com','Admin SISPEL');
@@ -320,7 +335,7 @@ class AuthUser extends CI_Controller
             $this->_kirimEmail($token,'lupa');
 
             $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
-            Email berhasil terkirim, silahkan cek email anda untuk reset password.
+            Link berhasil terkirim, silahkan cek email anda untuk reset password.
             </div>');
 
             redirect(base_url('authuser/lupaPassword'));
@@ -372,6 +387,7 @@ class AuthUser extends CI_Controller
 
         $this->form_validation->set_rules('password1', 'New Password', 'trim|required|min_length[4]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'trim|required|min_length[4]|matches[password1]');
+        
         
         if ($this->form_validation->run() == FALSE) {
             $data['judul'] = "Ubah Password";
