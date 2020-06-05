@@ -65,13 +65,13 @@
                   </div>
                   
                   <div class="mt-5 text-center">
-                	Sudah punya akun? Silahkan <a href="<?= base_url('authuser/halamanLogin')?>">Login</a>
+                	Sudah punya akun? Silahkan <a href="<?= base_url('authuser')?>">Login</a>
                   </div>
                 </form>
               </div>
             </div>
             <div class="simple-footer">
-              Copyright &copy; Stisla 2018
+              Copyright &copy; Stisla 2020
             </div>
           </div>
         </div>

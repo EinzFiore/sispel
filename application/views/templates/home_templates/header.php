@@ -22,6 +22,7 @@
   <link href="<?= base_url('assets/enno')?>/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="<?= base_url('assets/enno')?>/vendor/venobox/venobox.css" rel="stylesheet">
   <link href="<?= base_url('assets/enno')?>/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- Template Main CSS File -->
   <link href="<?= base_url('assets/enno')?>/css/style.css" rel="stylesheet">

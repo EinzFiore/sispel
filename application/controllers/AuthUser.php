@@ -26,6 +26,8 @@ class AuthUser extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['judul'] = "Login";
             $this->load->view('templates/auth_header',$data);
+            $this->load->view('templates/home_templates/header',$data);
+            $this->load->view('templates/user_templates/navbar',$data);
             $this->load->view('UserAuth/login');
             $this->load->view('templates/auth_footer');
         } else {
@@ -37,8 +39,11 @@ class AuthUser extends CI_Controller
     public function Homepage()
 	{
 		$data['judul'] = 'Homepage';
+        $data['pelatihan'] = $this->db->get('kategori_pelatihan')->result_array();
+		$data['program'] = $this->db->get('program_pelatihan')->result_array();
 
 		$this->load->view('templates/home_templates/header',$data);
+		$this->load->view('templates/home_templates/navbar',$data);
 		$this->load->view('homepage');
 		$this->load->view('templates/home_templates/footer');
 	}
@@ -174,10 +179,6 @@ class AuthUser extends CI_Controller
             'link' => ' ' . base_url() . 'AuthUser/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"',
         );
 
-        $notif = array(
-            'name' => 'Kamisama',
-        );
-
         $this->email->from('kamisama.sispel@gmail.com','Admin SISPEL');
         $this->email->to($this->input->post('email'));
 
@@ -224,7 +225,6 @@ class AuthUser extends CI_Controller
 
                 } else {
                     // fungsi memberi batas waktu aktivasi token
-
                     $this->db->delete('user',['email' => $email]);
                     $this->db->delete('user_token',['email' => $email]);
 

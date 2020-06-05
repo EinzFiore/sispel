@@ -1,45 +1,5 @@
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
-
-      <h1 class="logo mr-auto"><a href="#">SISPEL</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo mr-auto"><img src="<?= base_url('assets/enno')?>/img/logo.png" class="img-fluid"></a> -->
-
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li class="active"><a href="#header">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Pelatihan</a></li>
-          <li><a href="#portfolio">Lowongan</a></li>
-          <li><a href="#team">Team</a></li>
-          <li class="drop-down"><a href="">Drop Down</a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="drop-down"><a href="#">Deep Drop Down</a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Contact</a></li>
-
-        </ul>
-      </nav><!-- .nav-menu -->
-
-      <a href="<?= base_url('authuser')?>" class="get-started-btn scrollto">Login</a>
-
-    </div>
-  </header><!-- End Header -->
+  
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
@@ -63,35 +23,19 @@
   </section><!-- End Hero -->
 
   <main id="main">
-
     <!-- ======= Featured Services Section ======= -->
-    <section id="featured-services" class="featured-services">
+    <section id="featured-services" class="featured-services mt-3">
       <div class="container">
-
         <div class="row">
-          <div class="col-lg-4 col-md-6">
+        <?php foreach($pelatihan as $p) : ?>
+          <div class="col-sm-4 mb-4">
             <div class="icon-box">
               <div class="icon"><i class="icofont-computer"></i></div>
-              <h4 class="title"><a href="">Web Development</a></h4>
-              <p class="description">Mari belajar seputar Web Development, setelah mengkuti pelatihan ini kamu akan memahami bagaimana sebuah website dibuat</p>
+              <h4 class="title"><a href=""><?= $p['keterangan']?></a></h4>
+              <p class="description"><?= $p['deskripsi_kategori'] ?></p>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <div class="icon"><i class="icofont-image"></i></div>
-              <h4 class="title"><a href="">Desain Grafis</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="icofont-tasks-alt"></i></div>
-              <h4 class="title"><a href="">Office</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-            </div>
-          </div>
-        </div>
-
+        <?php endforeach; ?>
       </div>
     </section><!-- End Featured Services Section -->
 
@@ -158,7 +102,6 @@
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
       <div class="container">
-
         <div class="section-title">
           <span>Pelatihan</span>
           <h2>Pelatihan</h2>
@@ -166,56 +109,21 @@
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+        <?php foreach($program as $pr) : ?>
+          <div class="col-lg-4 col-md-6 mb-3 d-flex align-items-stretch">
+            <div class="card-deck">
+              <div class="card">
+                <img class="card-img-top thumbnail" width="20%" src="<?= base_url('assets/img/program/') . $pr['gambar'] ?>" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><?= $pr['judul_program']; ?></h5>
+                  <p class="card-text"><?= $pr['deskripsi']; ?></p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4><a href="">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-slideshow"></i></div>
-              <h4><a href="">Dele cardo</a></h4>
-              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
-              <h4><a href="">Divera don</a></h4>
-              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-            </div>
-          </div>
-
+        <?php endforeach; ?>
         </div>
-
       </div>
     </section><!-- End Services Section -->
 
@@ -343,9 +251,9 @@
       <div class="container">
 
         <div class="section-title">
-          <span>Testimonials</span>
-          <h2>Testimonials</h2>
-          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+          <span>Alumni</span>
+          <h2>Alumni</h2>
+          <p>Ini kata mereka tentang SISPEL</p>
         </div>
 
         <div class="owl-carousel testimonials-carousel">
@@ -353,56 +261,56 @@
           <div class="testimonial-item">
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+              Materi yang disampaikan sangat baik, berkat mengikuti pelatihan ini saya sadar bahwa diri saya berada dijalan ninja yang benar.
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
-            <img src="<?= base_url('assets/enno')?>/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-            <h3>Saul Goodman</h3>
-            <h4>Ceo &amp; Founder</h4>
+            <img src="<?= base_url('assets')?>/img/testi/naruto.png" class="testimonial-img" alt="">
+            <h3>Uzumaki Naruto</h3>
+            <h4>Hokage di Konoha </h4>
           </div>
 
           <div class="testimonial-item">
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+              Berkat SISPEL akhirnya gw bisa hack akun si Fizi kamvret, makasih SISPEL (like)
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
-            <img src="<?= base_url('assets/enno')?>/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-            <h3>Sara Wilsson</h3>
-            <h4>Designer</h4>
+            <img src="<?= base_url('assets')?>/img/testi/upin.jpg" class="testimonial-img" alt="">
+            <h3>Upin dan Ipin</h3>
+            <h4>Gangster Durian Runtuh</h4>
           </div>
 
           <div class="testimonial-item">
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+              birkit pilitihin ini siyi minjidi sioring wib divilipir, tirimikisih sispil (like)
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
-            <img src="<?= base_url('assets/enno')?>/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-            <h3>Jena Karlis</h3>
-            <h4>Store Owner</h4>
+            <img src="<?= base_url('assets')?>/img/testi/shitpost.jpg" class="testimonial-img" alt="">
+            <h3>Cringe People</h3>
+            <h4>Elite Shitposter</h4>
           </div>
 
           <div class="testimonial-item">
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+              Berkat SISPEL saya bisa hack GARENA biar bisa topup FF Unlimited, tengkyu SISPEL
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
-            <img src="<?= base_url('assets/enno')?>/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-            <h3>Matt Brandon</h3>
-            <h4>Freelancer</h4>
+            <img src="<?= base_url('assets')?>/img/testi/ff.jpg" class="testimonial-img" alt="">
+            <h3>Rizky C'boedak FriFayer</h3>
+            <h4>OP Warnet</h4>
           </div>
 
           <div class="testimonial-item">
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+              Berkat SISPEL watashi bisa menuju jalan isekai dengan mudah, arigatou gozaimasu SISPEL watashi jadi bisa ketemu waifu isekai (suki)
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
-            <img src="<?= base_url('assets/enno')?>/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-            <h3>John Larson</h3>
-            <h4>Entrepreneur</h4>
+            <img src="<?= base_url('assets')?>/img/testi/kirito.png" class="testimonial-img" alt="">
+            <h3>Kirito Sang Pendekar Pedang Hitam</h3>
+            <h4>Main Character</h4>
           </div>
 
         </div>
@@ -415,9 +323,9 @@
       <div class="container">
 
         <div class="text-center">
-          <h3>Call To Action</h3>
-          <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a class="cta-btn" href="#">Call To Action</a>
+          <h3>Tunggu Apa Lagi?</h3>
+          <p>Jika kalian tertarik untuk ikut Pelatihan di SISPEL, silahkan kalian bisa daftar pada halaman diatas.</p>
+          <a class="cta-btn" href="#">Daftar</a>
         </div>
 
       </div>
