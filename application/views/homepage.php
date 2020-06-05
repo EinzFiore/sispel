@@ -123,7 +123,7 @@
                     </div>
                     <p><?= $pr['deskripsi']; ?> </p>
                     <div class="article-user">
-                      <img alt="image" src="../assets/img/avatar/avatar-1.png">
+                      <img alt="image" src="<?= base_url('assets/')?>/img/avatar/avatar-1.png">
                       <div class="article-user-details">
                         <div class="user-detail-name">
                           <a href="#">Hasan Basri</a>
