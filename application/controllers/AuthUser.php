@@ -14,7 +14,6 @@ class AuthUser extends CI_Controller
     {
         // Cek session agar tidak bisa kembali ke halaman auth jika terdapat session.
 
-
         if($this->session->userdata('email')){
             redirect('user');
         }
@@ -34,14 +33,16 @@ class AuthUser extends CI_Controller
             $this->_login();
         }
     }
-
+    
     
     public function Homepage()
 	{
-		$data['judul'] = 'Homepage';
+        $data['judul'] = 'Homepage';
         $data['pelatihan'] = $this->db->get('kategori_pelatihan')->result_array();
-		$data['program'] = $this->db->get('program_pelatihan')->result_array();
+        $data['program'] = $this->db->limit(3)->get('program_pelatihan')->result_array();
 
+        
+        $this->load->view('templates/auth_header',$data);
 		$this->load->view('templates/home_templates/header',$data);
 		$this->load->view('templates/home_templates/navbar',$data);
 		$this->load->view('homepage');
@@ -70,20 +71,20 @@ class AuthUser extends CI_Controller
                     redirect('user/data_peserta');
                 }
                 } else {
-                    $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                    $this->session->set_flashdata('message','<div class="alert alert-danger text-light" role="alert">
                     Password yang dimasukan salah !!
                   </div>');
                   redirect(base_url());       
                 }
 
             } else {
-                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('message','<div class="alert alert-danger text-light" role="alert">
                 Email belum di aktivasi!!
               </div>');
               redirect(base_url());
             }
         }else{
-            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('message','<div class="alert alert-danger text-light" role="alert">
             Email belum terdaftar!!
           </div>');
           redirect(base_url());
@@ -218,7 +219,7 @@ class AuthUser extends CI_Controller
 
                     // hapus user token
                     $this->db->delete('user_token',['email' => $email]);
-                    $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">' . $email .'
+                    $this->session->set_flashdata('message','<div class="alert alert-success text-light" role="alert">' . $email .'
                     Telah berhasil di aktivasi, Silahkan Login. 
                   </div>');
                     redirect(base_url());
@@ -228,19 +229,19 @@ class AuthUser extends CI_Controller
                     $this->db->delete('user',['email' => $email]);
                     $this->db->delete('user_token',['email' => $email]);
 
-                    $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                    $this->session->set_flashdata('message','<div class="alert alert-danger text-light" role="alert">
                     Aktivasi Akun gagal ! Token Expired.
                   </div>');
                     redirect(base_url(authuser));
                 }
             } else {
-                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('message','<div class="alert alert-danger text-light" role="alert">
                 Aktivasi Akun gagal ! Token salah !
               </div>');
                 redirect(base_url(authuser));
             }
         } else {
-            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('message','<div class="alert alert-danger text-light" role="alert">
             Aktivasi Akun gagal ! Email salah !
           </div>');
             redirect(base_url(authuser));
@@ -281,13 +282,13 @@ class AuthUser extends CI_Controller
             $current_password = $this->input->post('oldpassword'); 
             $new_password = $this->input->post('newpassword');
             if(!password_verify($current_password,$data['user']['password'])){
-                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('message','<div class="alert alert-danger text-light" role="alert">
                 Password lama yang anda masukan salah !!
                 </div>');
                 redirect(base_url('user/ubah_password'));
             } else {
                 if($current_password == $new_password){
-                    $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                    $this->session->set_flashdata('message','<div class="alert alert-danger text-light" role="alert">
                     Password baru tidak boleh sama dengan password lama !!
                     </div>');
                     redirect(base_url('user/ubah_password'));
@@ -341,7 +342,7 @@ class AuthUser extends CI_Controller
             redirect(base_url('authuser/lupaPassword'));
             } else {
               //jika tak ada user
-              $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+              $this->session->set_flashdata('message','<div class="alert alert-danger text-light" role="alert">
               Email tidak terdaftar atau belum aktif !!
               </div>');
               redirect(base_url('authuser/lupaPassword'));
@@ -364,14 +365,14 @@ class AuthUser extends CI_Controller
                 $this->session->set_userdata('reset_email',$email);
                 $this->changePassword();
             } else { //jika tak ada user token
-                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('message','<div class="alert alert-danger text-light" role="alert">
                 Token Salah !
                 </div>');
                 redirect(base_url('authuser'));
             }
         } else {
             // jika tak ada user
-            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('message','<div class="alert alert-danger text-light" role="alert">
             Reset Password Gagal! Email salah.
             </div>');
             redirect(base_url('authuser'));
