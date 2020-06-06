@@ -24,83 +24,33 @@
                             <!-- single one -->
                             <div class="single-listing">
                                <div class="small-section-tittle2">
-                                     <h4>Job Category</h4>
+                                     <h4>Kategori Pelatihan</h4>
                                </div>
                                 <!-- Select job items start -->
                                 <div class="select-job-items2">
-                                    <select name="select">
-                                        <option value="">All Category</option>
-                                        <option value="">Category 1</option>
-                                        <option value="">Category 2</option>
-                                        <option value="">Category 3</option>
-                                        <option value="">Category 4</option>
+                                    <select name="select" class="mb-4">
+                                        <option>Semua Kategori</option>
+                               <?php foreach($kategori as $kt) : ?>
+                                        <option value="<?= $kt['keterangan'] ?>"><?= $kt['keterangan'] ?></option>
+                               <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <!--  Select job items End-->
-                                <!-- select-Categories start -->
-                                <!-- <div class="select-Categories pt-80 pb-50">
-                                    <div class="small-section-tittle2">
-                                        <h4>Job Type</h4>
-                                    </div>
-                                    <label class="container">Full Time
-                                        <input type="checkbox" >
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Part Time
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Remote
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Freelance
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div> -->
-                                <!-- select-Categories End -->
                             </div>
                             <!-- single two -->
-                            <div class="single-listing mt-5">
+                            <div class="single-listing">
                                <div class="small-section-tittle2">
                                      <h4>Lokasi Pelatihan</h4>
                                </div>
                                 <!-- Select job items start -->
                                 <div class="select-job-items2">
                                     <select name="select">
-                                        <option value="">Anywhere</option>
+                                        <option>Semua Lokasi</option>
                                         <option value="Online">Online</option>
                                         <option value="Karawang">Karawang</option>
                                     </select>
                                 </div>
-                                <!--  Select job items End-->
-                                <!-- select-Categories start -->
-                                <div class="select-Categories pt-80 pb-50">
-                                    <div class="small-section-tittle2">
-                                        <h4>Experience</h4>
-                                    </div>
-                                    <label class="container">1-2 Years
-                                        <input type="checkbox" >
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">2-3 Years
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">3-6 Years
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">6-more..
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <!-- select-Categories End -->
                             </div>
                         </div>
-                        <!-- Job Category Listing End -->
                     </div>
                     <!-- Right content -->
                     <div class="col-xl-9 col-lg-9 col-md-8">
@@ -109,20 +59,15 @@
                             <div class="container">
                                 <!-- Count of Job list Start -->
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12">   
                                         <div class="count-job mb-35">
-                                            <span>39, 782 Jobs found</span>
-                                            <!-- Select job items start -->
-                                            <div class="select-job-items">
-                                                <span>Sort by</span>
-                                                <select name="select">
-                                                    <option value="">None</option>
-                                                    <option value="">job list</option>
-                                                    <option value="">job list</option>
-                                                    <option value="">job list</option>
-                                                </select>
-                                            </div>
-                                            <!--  Select job items End-->
+                                            <span><?= $totalPelatihan; ?> Pelatihan tersedia</span>
+                                            <nav class="navbar navbar-light">
+                                                <form class="form-inline" action="<?= base_url('blog') ?>" method="get">
+                                                    <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Search" aria-label="Search" autofocus>
+                                                    <button class="btn btn-outline-danger my-2 my-sm-0" name="submit" type="submit">Search</button>
+                                                </form>
+                                            </nav>
                                         </div>
                                     </div>
                                 </div>
@@ -150,15 +95,20 @@
                                                 <li>Pendaftaran :</li>
                                                 <li><?= $pg['tgl_pendaftaran'] ?> - <?= $pg['tutup_pendaftaran'] ?></li>
                                             </ul>
+                                            <ul>
+                                                <li>
+                                                    <span class="badge badge-primary text-light">#<?= $pg['keterangan'] ?></span>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
                                         <a href="<?= base_url('blog/blog_detail/') . $pg['id_program'] . '/' ?>">Detail</a>
                                         <?php if($pg['status'] == 0) : ?>
-                                        <span class="badge badge-danger text-light">Belum dibuka</span>
+                                        <span class="badge badge-pill badge-danger text-light">Belum dibuka</span>
                                         <?php endif; ?>
                                         <?php if($pg['status'] == 1) : ?>
-                                        <span class="badge badge-success text-light">Dibuka</span>
+                                        <span class="badge badge-pill badge-success text-light">Dibuka</span>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -176,14 +126,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="single-wrap d-flex justify-content-center">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-start">
-                                    <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
-                                </ul>
-                            </nav>
+                            <?= $this->pagination->create_links(); ?>
                         </div>
                     </div>
                 </div>

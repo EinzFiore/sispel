@@ -33,21 +33,8 @@ class AuthUser extends CI_Controller
             $this->_login();
         }
     }
-    
-    
-    public function Homepage()
-	{
-        $data['judul'] = 'Homepage';
-        $data['pelatihan'] = $this->db->get('kategori_pelatihan')->result_array();
-        $data['program'] = $this->db->limit(3)->get('program_pelatihan')->result_array();
 
-        
-        $this->load->view('templates/auth_header',$data);
-		$this->load->view('templates/home_templates/header',$data);
-		$this->load->view('templates/home_templates/navbar',$data);
-		$this->load->view('homepage');
-		$this->load->view('templates/home_templates/footer');
-	}
+    
 
     private function _login()
     {
@@ -417,6 +404,11 @@ class AuthUser extends CI_Controller
         $this->load->view('templates/auth_header',$data);
         $this->load->view('userauth/blocked');
         $this->load->view('templates/auth_footer');
+    }
+
+    function kamisama()
+    {
+        
     }
 }
 

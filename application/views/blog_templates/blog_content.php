@@ -2,12 +2,25 @@
 
 <!-- Hero Area Start-->
 <div class="slider-area ">
-<div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="./assets/img/hero/about.jpg">
+<div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="<?= base_url('assets') ?>/img/cover_blog.jpg">
     <div class="container">
         <div class="row">
-            <div class="col-xl-12">
-                <div class="hero-cap text-center">
-                    <h2><?= $program['judul_program'] ?></h2>
+            <div class="col-xl-2 logo-cover">
+                <img src="<?= base_url('assets/img/kemnaker_new.png') ?>" width="100%" class="rounded float-left">
+            </div>
+            <div class="col-sm-5 mr-5">
+                <div class="hero-cap text-left">
+                    <h3 class="text-light"><?= $program['judul_program'] ?></h3>
+                    <p>
+                        <?php if($program['status'] == 0) : ?>
+                                        <span class="badge badge-danger text-light">Belum dibuka</span>
+                                        <?php endif; ?>
+                                        <?php if($program['status'] == 1) : ?>
+                                        <span class="badge badge-success text-light">Dibuka</span>
+                        <?php endif; ?>
+                    </p>
+                    <p class="text-light">Penyelenggara : <span class="badge badge-primary">Kemnaker</span></p>
+                    <p class="text-light">Kategori Pelatihan : <span class="badge badge-info"><?= $program['keterangan'] ?></span></p>
                 </div>
             </div>
         </div>
@@ -25,7 +38,7 @@
                 <div class="single-job-items mb-50">
                     <div class="job-items">
                         <div class="company-img company-img-details">
-                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                            <a href="#"><img src="<?= base_url('assets') ?>/img/icon/job-list1.png" alt=""></a>
                         </div>
                         <div class="job-tittle">
                             <a href="#">
@@ -57,10 +70,10 @@
                         </div>
                         <p><?= $program['deskripsi'] ?></p>
                     </div>
-                    <div class="post-details2  mb-50">
+                    <div class="post-details2 mb-50">
                          <!-- Small Section Tittle -->
                         <div class="small-section-tittle">
-                            <h4>Required Knowledge, Skills, and Abilities</h4>
+                            <h4>Persyaratan</h4>
                         </div>
                        <ul>
                            <li>System Software Development</li>
@@ -83,7 +96,7 @@
                   <ul>
                       <li>Pelatihan Dimulai : <span><?= $program['tgl_pelaksanaan'] ?></span></li>
                       <li>Lokasi : <span><?= $program['lokasi'] ?></span></li>
-                      <li>Jadwal Pelatihan : <span><?= $program['hari'] ?></span></li>
+                      <li>Jadwal Pelatihan : <span class="badge badge-success"><?= $program['hari'] ?></span></li>
                       <li>Lama Kegiatan : <span><?= $program['lama_pelaksanaan'] ?> hari</span></li>
                       <li>Batas Kuota :  <span><?= $program['batas_kuota'] ?> Peserta</span></li>
                   </ul>

@@ -8,10 +8,10 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="<?= base_url('authuser/homepage/') ?>">Home</a></li>
+          <li class="active"><a href="<?= base_url('blog/homepage/') ?>">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#services">Pelatihan</a></li>
-          <li><a href="#portfolio">Lowongan</a></li>
+          <li><a href="<?= base_url('blog') ?>">Pelatihan</a></li>
+          <li><a href="<?= base_url('job') ?>">Lowongan</a></li>
           <li><a href="#team">Team</a></li>
           <!-- <li class="drop-down"><a href="">Drop Down</a>
             <ul>

@@ -22,6 +22,21 @@
             <link rel="stylesheet" href="<?= base_url('vendor/assets') ?>/css/slick.css">
             <link rel="stylesheet" href="<?= base_url('vendor/assets') ?>/css/nice-select.css">
             <link rel="stylesheet" href="<?= base_url('vendor/assets') ?>/css/style.css">
+
+            <style>
+                .logo-cover img{
+                    border: 4px solid #fff;
+                    background-color: white;
+                    box-shadow: 4px 4px 7px #34495e;
+                }
+
+                .single-slider{
+                    background-attachment: fixed;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            </style>
    </head>
 
    <body>
