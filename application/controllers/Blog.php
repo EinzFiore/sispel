@@ -21,14 +21,26 @@ class Blog extends CI_Controller {
 
 		$data['totalPelatihan'] = $this->modelBlog->dataProgram();
 
+		if($this->input->get('submit')){
+			$data['keyword'] = $this->input->get('keyword');
+			$this->session->set_userdata('keyword',$data['keyword']);
+			
+		} else {
+			$data['keyword'] = $this->session->userdata('keyword');
+		}
+
 		// config
-		$config['total_rows'] = $this->modelBlog->dataProgram();
+		$this->db->like('judul_program',$data['keyword']);
+		$this->db->from('program_pelatihan');
+		$config['total_rows'] = $this->db->count_all_results();
+		$data['total_rows'] = $config['total_rows'];
 		$config['per_page'] = 4;
 
 		$this->pagination->initialize($config);
 		$data['start'] = $this->uri->segment(3);
 
-		$data['keyword'] = $this->input->get('keyword');
+		
+
 
 		$data['program'] = $this->modelBlog->dataAllPelatihan($config['per_page'],$data['start'],$data['keyword']);
 		$data['kategori'] = $this->db->get('kategori_pelatihan')->result_array();

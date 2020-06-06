@@ -59,13 +59,19 @@
                             <div class="container">
                                 <!-- Count of Job list Start -->
                                 <div class="row">
-                                    <div class="col-lg-12">   
+                                    <div class="col-lg-12">
+                                    <?php 
+                                        if(empty($program)) : ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            Data tidak ditemukan!
+                                        </div>
+                                        <?php endif;?>   
                                         <div class="count-job mb-35">
-                                            <span><?= $totalPelatihan; ?> Pelatihan tersedia</span>
+                                            <span><?= $total_rows; ?> Pelatihan tersedia</span>
                                             <nav class="navbar navbar-light">
                                                 <form class="form-inline" action="<?= base_url('blog') ?>" method="get">
                                                     <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Search" aria-label="Search" autofocus>
-                                                    <button class="btn btn-outline-danger my-2 my-sm-0" name="submit" type="submit">Search</button>
+                                                    <input class="btn btn-outline-danger my-2 my-sm-0" name="submit" value="Search" type="submit"></input>
                                                 </form>
                                             </nav>
                                         </div>
